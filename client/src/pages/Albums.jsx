@@ -50,16 +50,17 @@ export default function Albums() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-10">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Albums</h2>
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      <div className="flex items-center justify-between mb-6 gap-4">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Albums</h2>
         {user && (
           <button
             onClick={() => setShowCreateModal(true)}
-            className="flex items-center gap-2 bg-brand-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-600 transition-colors"
+            className="flex items-center gap-2 bg-brand-500 text-white px-3 sm:px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-600 transition-colors min-h-[44px] shrink-0"
           >
             <span className="text-lg">+</span>
-            New Album
+            <span className="hidden sm:inline">New Album</span>
+            <span className="sm:hidden">New</span>
           </button>
         )}
       </div>

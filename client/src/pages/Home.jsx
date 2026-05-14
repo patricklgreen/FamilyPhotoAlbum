@@ -7,8 +7,8 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-[80vh] text-center px-4">
-      <h1 className="text-4xl font-bold text-gray-900 mb-4">Family Photo Album</h1>
-      <p className="text-gray-500 text-lg max-w-md mb-8">
+      <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Family Photo Album</h1>
+      <p className="text-gray-500 text-base sm:text-lg max-w-md mb-8">
         Privately store and share your family memories, synced securely with Firebase.
       </p>
       {loading ? null : user ? (

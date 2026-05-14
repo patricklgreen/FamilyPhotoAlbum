@@ -52,18 +52,19 @@ export default function AlbumDetail() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-10">
-      <div className="flex items-center justify-between mb-4">
-        <Link to="/albums" className="text-sm text-brand-600 hover:underline">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      <div className="flex items-center justify-between mb-4 gap-4">
+        <Link to="/albums" className="text-sm text-brand-600 hover:underline min-h-[44px] flex items-center">
           ← Back to Albums
         </Link>
         {user && (
           <button
             onClick={() => setShowUploadModal(true)}
-            className="flex items-center gap-2 bg-brand-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-600 transition-colors"
+            className="flex items-center gap-2 bg-brand-500 text-white px-3 sm:px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-600 transition-colors min-h-[44px] shrink-0"
           >
             <span className="text-lg">+</span>
-            Upload Photos
+            <span className="hidden sm:inline">Upload Photos</span>
+            <span className="sm:hidden">Upload</span>
           </button>
         )}
       </div>

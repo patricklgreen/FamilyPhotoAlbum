@@ -10,7 +10,7 @@ export default function UploadPhotosModal({ albumId, onClose, onUploaded }) {
 
   function handleFileChange(e) {
     const selectedFiles = Array.from(e.target.files || []);
-    setFiles(selectedFiles);
+    setFiles((prev) => [...prev, ...selectedFiles]);
     setError(null);
   }
 
@@ -19,7 +19,7 @@ export default function UploadPhotosModal({ albumId, onClose, onUploaded }) {
     const droppedFiles = Array.from(e.dataTransfer.files).filter((f) =>
       f.type.startsWith('image/')
     );
-    setFiles(droppedFiles);
+    setFiles((prev) => [...prev, ...droppedFiles]);
     setError(null);
   }
 
@@ -86,10 +86,44 @@ export default function UploadPhotosModal({ albumId, onClose, onUploaded }) {
           </p>
           {files.length > 0 && (
             <p className="text-sm text-gray-400 mt-1">
-              {files.map((f) => f.name).join(', ')}
+              Click or drop to add more
             </p>
           )}
         </div>
+
+        {files.length > 0 && (
+          <div className="mt-4">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-gray-700">
+                {files.length} photo{files.length !== 1 ? 's' : ''} ready to upload
+              </span>
+              <button
+                type="button"
+                onClick={() => setFiles([])}
+                className="text-sm text-red-500 hover:text-red-700"
+              >
+                Clear all
+              </button>
+            </div>
+            <ul className="max-h-32 overflow-y-auto space-y-1">
+              {files.map((file, index) => (
+                <li
+                  key={`${file.name}-${index}`}
+                  className="flex items-center justify-between text-sm text-gray-600 bg-gray-50 rounded px-2 py-1"
+                >
+                  <span className="truncate mr-2">{file.name}</span>
+                  <button
+                    type="button"
+                    onClick={() => setFiles((prev) => prev.filter((_, i) => i !== index))}
+                    className="text-gray-400 hover:text-red-500 flex-shrink-0"
+                  >
+                    ✕
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {uploading && (
           <div className="mt-4">
